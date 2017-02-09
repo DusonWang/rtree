@@ -5,6 +5,7 @@ import rx.functions.Func1;
 import rx.functions.Func2;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 public final class Functions {
 
@@ -62,10 +63,10 @@ public final class Functions {
     }
 
     public static <T> Func1<T, Boolean> isNull() {
-        return (T t) -> t == null;
+        return Objects::isNull;
     }
 
     public static <T> Func1<T, Boolean> isNotNull() {
-        return (T t) -> t != null;
+        return Objects::nonNull;
     }
 }
