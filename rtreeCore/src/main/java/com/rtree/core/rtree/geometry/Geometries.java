@@ -43,7 +43,7 @@ public final class Geometries {
         return rectangleGeographic((float) lon1, (float) lat1, (float) lon2, (float) lat2);
     }
 
-    public static Rectangle rectangleGeographic(float lon1, float lat1, float lon2, float lat2) {
+    private static Rectangle rectangleGeographic(float lon1, float lat1, float lon2, float lat2) {
         float x1 = normalizeLongitude(lon1);
         float x2 = normalizeLongitude(lon2);
         if (x2 < x1) {
@@ -57,7 +57,7 @@ public final class Geometries {
     }
 
     @VisibleForTesting
-    static double normalizeLongitude(double d) {
+    private static double normalizeLongitude(double d) {
         return normalizeLongitude((float) d);
     }
 

@@ -18,8 +18,8 @@ import static com.github.davidmoten.guavamini.Optional.of;
 public final class SplitterQuadratic implements Splitter {
 
     @VisibleForTesting
-    static <T extends HasGeometry> T getBestCandidateForGroup(List<T> list,
-                                                              Rectangle groupMbr) {
+    private static <T extends HasGeometry> T getBestCandidateForGroup(List<T> list,
+                                                                      Rectangle groupMbr) {
         Optional<T> minEntry = absent();
         Optional<Float> minArea = absent();
         for (final T entry : list) {
@@ -33,7 +33,7 @@ public final class SplitterQuadratic implements Splitter {
     }
 
     @VisibleForTesting
-    static <T extends HasGeometry> Pair<T> worstCombination(List<T> items) {
+    private static <T extends HasGeometry> Pair<T> worstCombination(List<T> items) {
         Optional<T> e1 = absent();
         Optional<T> e2 = absent();
         {

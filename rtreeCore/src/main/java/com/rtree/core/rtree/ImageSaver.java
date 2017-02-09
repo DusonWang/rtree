@@ -19,7 +19,7 @@ final class ImageSaver {
         run(callable);
     }
 
-    static void run(Callable<Void> callable) {
+    private static void run(Callable<Void> callable) {
         try {
             callable.call();
         } catch (Exception e) {

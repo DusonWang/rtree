@@ -18,7 +18,7 @@ public final class NonLeafHelper {
     private NonLeafHelper() {
     }
 
-    public static <T, S extends Geometry> void search(Func1<? super Geometry, Boolean> criterion, Subscriber<? super Entry<T, S>> subscriber, NonLeaf<T, S> node) {
+    static <T, S extends Geometry> void search(Func1<? super Geometry, Boolean> criterion, Subscriber<? super Entry<T, S>> subscriber, NonLeaf<T, S> node) {
         if (!criterion.call(node.geometry().mbr()))
             return;
         int numChildren = node.count();

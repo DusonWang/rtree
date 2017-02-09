@@ -47,7 +47,7 @@ public final class Visualizer {
         return (int) Math.round(d);
     }
 
-    public BufferedImage createImage() {
+    private BufferedImage createImage() {
         final BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         final Graphics2D g = (Graphics2D) image.getGraphics();
         g.setBackground(Color.white);
@@ -63,7 +63,7 @@ public final class Visualizer {
     private <T, S extends Geometry> List<RectangleDepth> getNodeDepthsSortedByDepth(
             Node<T, S> root) {
         final List<RectangleDepth> list = getRectangleDepths(root, 0);
-        Collections.sort(list, (RectangleDepth n1, RectangleDepth n2) -> ((Integer) n1.getDepth()).compareTo(n2.getDepth()));
+        list.sort((RectangleDepth n1, RectangleDepth n2) -> ((Integer) n1.getDepth()).compareTo(n2.getDepth()));
         return list;
     }
 
@@ -100,7 +100,7 @@ public final class Visualizer {
         g.drawRect(rnd(x1), rnd(y1), Math.max(rnd(x2 - x1), 1), Math.max(rnd(y2 - y1), 1));
     }
 
-    public void save(File file, String imageFormat) {
+    private void save(File file, String imageFormat) {
         ImageSaver.save(createImage(), file, imageFormat);
     }
 

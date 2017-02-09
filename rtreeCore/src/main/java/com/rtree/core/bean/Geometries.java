@@ -1,13 +1,13 @@
 package com.rtree.core.bean;
 
 public class Geometries {
-    private GeojsonGeometries[] geometries;
+    private GeoJsonGeometries[] geometries;
 
-    public GeojsonGeometries[] getGeometries() {
+    public GeoJsonGeometries[] getGeometries() {
         return geometries;
     }
 
-    public void setGeometries(GeojsonGeometries[] geometries) {
+    public void setGeometries(GeoJsonGeometries[] geometries) {
         this.geometries = geometries;
     }
 

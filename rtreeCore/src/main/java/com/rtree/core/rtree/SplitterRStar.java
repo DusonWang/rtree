@@ -50,7 +50,7 @@ public final class SplitterRStar implements Splitter {
     }
 
     @VisibleForTesting
-    static <T extends HasGeometry> List<ListPair<T>> getPairs(int minSize, List<T> list) {
+    private static <T extends HasGeometry> List<ListPair<T>> getPairs(int minSize, List<T> list) {
         List<ListPair<T>> pairs = new ArrayList<>(list.size() - 2 * minSize + 1);
         for (int i = minSize; i < list.size() - minSize + 1; i++) {
             List<T> list1 = list.subList(0, i);
@@ -77,7 +77,7 @@ public final class SplitterRStar implements Splitter {
             if (list == null) {
                 list = new ArrayList<>(items);
             }
-            Collections.sort(list, comparator(sortType));
+            list.sort(comparator(sortType));
             List<ListPair<T>> p = getPairs(minSize, list);
             float marginSum = marginValueSum(p);
             if (marginSum < lowestMarginSum) {
@@ -86,6 +86,7 @@ public final class SplitterRStar implements Splitter {
                 list = null;
             }
         }
+        assert pairs != null;
         return Collections.min(pairs, comparator);
     }
 

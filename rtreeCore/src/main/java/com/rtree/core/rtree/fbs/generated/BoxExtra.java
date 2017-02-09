@@ -15,7 +15,7 @@ public final class BoxExtra extends Struct {
         return builder.offset();
     }
 
-    public BoxExtra init(int iTmp, ByteBuffer bbTmp) {
+    BoxExtra init(int iTmp, ByteBuffer bbTmp) {
         bb_pos = iTmp;
         bb = bbTmp;
         return this;

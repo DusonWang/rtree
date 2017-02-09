@@ -11,7 +11,7 @@ public final class GeometryExtra extends Table {
         return getRootAsGeometry(bbTmp, new GeometryExtra());
     }
 
-    public static GeometryExtra getRootAsGeometry(ByteBuffer bbTmp, GeometryExtra obj) {
+    private static GeometryExtra getRootAsGeometry(ByteBuffer bbTmp, GeometryExtra obj) {
         bbTmp.order(ByteOrder.LITTLE_ENDIAN);
         return obj.init(bbTmp.getInt(bbTmp.position()) + bbTmp.position(), bbTmp);
     }
@@ -44,7 +44,7 @@ public final class GeometryExtra extends Table {
         return builder.endObject();
     }
 
-    public GeometryExtra init(int iTmp, ByteBuffer bbTmp) {
+    GeometryExtra init(int iTmp, ByteBuffer bbTmp) {
         bb_pos = iTmp;
         bb = bbTmp;
         return this;
@@ -59,7 +59,7 @@ public final class GeometryExtra extends Table {
         return box(new BoxExtra());
     }
 
-    public BoxExtra box(BoxExtra obj) {
+    private BoxExtra box(BoxExtra obj) {
         int o = __offset(6);
         return o != 0 ? obj.init(o + bb_pos, bb) : null;
     }
@@ -77,7 +77,7 @@ public final class GeometryExtra extends Table {
         return circle(new CircleExtra());
     }
 
-    public CircleExtra circle(CircleExtra obj) {
+    private CircleExtra circle(CircleExtra obj) {
         int o = __offset(10);
         return o != 0 ? obj.init(o + bb_pos, bb) : null;
     }
@@ -86,7 +86,7 @@ public final class GeometryExtra extends Table {
         return line(new BoxExtra());
     }
 
-    public BoxExtra line(BoxExtra obj) {
+    private BoxExtra line(BoxExtra obj) {
         int o = __offset(12);
         return o != 0 ? obj.init(o + bb_pos, bb) : null;
     }

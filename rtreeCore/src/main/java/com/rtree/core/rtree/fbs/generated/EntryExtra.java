@@ -11,7 +11,7 @@ public final class EntryExtra extends Table {
         return getRootAsEntry(bbTmp, new EntryExtra());
     }
 
-    public static EntryExtra getRootAsEntry(ByteBuffer bbTmp, EntryExtra obj) {
+    private static EntryExtra getRootAsEntry(ByteBuffer bbTmp, EntryExtra obj) {
         bbTmp.order(ByteOrder.LITTLE_ENDIAN);
         return obj.init(bbTmp.getInt(bbTmp.position()) + bbTmp.position(), bbTmp);
     }
@@ -28,11 +28,11 @@ public final class EntryExtra extends Table {
         builder.startObject(2);
     }
 
-    public static void addGeometry(FlatBufferBuilder builder, int geometryOffset) {
+    private static void addGeometry(FlatBufferBuilder builder, int geometryOffset) {
         builder.addOffset(0, geometryOffset, 0);
     }
 
-    public static void addObject(FlatBufferBuilder builder, int objectOffset) {
+    private static void addObject(FlatBufferBuilder builder, int objectOffset) {
         builder.addOffset(1, objectOffset, 0);
     }
 
@@ -47,11 +47,11 @@ public final class EntryExtra extends Table {
         builder.startVector(1, numElems, 1);
     }
 
-    public static int endEntry(FlatBufferBuilder builder) {
+    private static int endEntry(FlatBufferBuilder builder) {
         return builder.endObject();
     }
 
-    public EntryExtra init(int iTmp, ByteBuffer bbTmp) {
+    EntryExtra init(int iTmp, ByteBuffer bbTmp) {
         bb_pos = iTmp;
         bb = bbTmp;
         return this;

@@ -11,7 +11,7 @@ public final class Circle implements Geometry {
     private final float x, y, radius;
     private final Rectangle mbr;
 
-    protected Circle(float x, float y, float radius) {
+    private Circle(float x, float y, float radius) {
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -53,7 +53,7 @@ public final class Circle implements Geometry {
         return Double.compare(distance(r), 0) == 0;
     }
 
-    public boolean intersects(Circle c) {
+    boolean intersects(Circle c) {
         double total = radius + c.radius;
         return point(x, y).distanceSquared(point(c.x, c.y)) <= total * total;
     }
@@ -69,7 +69,7 @@ public final class Circle implements Geometry {
         return other.isPresent() && Objects.equal(x, other.get().x) && Objects.equal(y, other.get().y) && Objects.equal(radius, other.get().radius);
     }
 
-    public boolean intersects(Point point) {
+    boolean intersects(Point point) {
         return Math.sqrt(sqr(x - point.x()) + sqr(y - point.y())) <= radius;
     }
 
@@ -77,7 +77,7 @@ public final class Circle implements Geometry {
         return x * x;
     }
 
-    public boolean intersects(Line line) {
+    boolean intersects(Line line) {
         return line.intersects(this);
     }
 }

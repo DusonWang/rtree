@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public final class FlatBuffersHelper {
+final class FlatBuffersHelper {
 
     private FlatBuffersHelper() {
     }
 
-    public static <T, S extends Geometry> int addEntries(List<Entry<T, S>> entries, FlatBufferBuilder builder, Func1<? super T, byte[]> serializer) {
+    static <T, S extends Geometry> int addEntries(List<Entry<T, S>> entries, FlatBufferBuilder builder, Func1<? super T, byte[]> serializer) {
         int[] entries2 = new int[entries.size()];
         for (int i = 0; i < entries.size(); i++) {
             Geometry g = entries.get(i).geometry();
@@ -29,10 +29,6 @@ public final class FlatBuffersHelper {
                 Rectangle b = (Rectangle) g;
                 geom = BoxExtra.createBox(builder, b.x1(), b.y1(), b.x2(), b.y2());
                 geomType = GeometryTypeExtra.Box;
-            } else if (g instanceof Point) {
-                Point p = (Point) g;
-                geom = PointExtra.createPoint_(builder, p.x(), p.y());
-                geomType = GeometryTypeExtra.Point;
             } else if (g instanceof Circle) {
                 Circle c = (Circle) g;
                 geom = CircleExtra.createCircle(builder, c.x(), c.y(), c.radius());
@@ -46,8 +42,6 @@ public final class FlatBuffersHelper {
             GeometryExtra.startGeometry(builder);
             if (geomType == GeometryTypeExtra.Box) {
                 GeometryExtra.addBox(builder, geom);
-            } else if (geomType == GeometryTypeExtra.Point) {
-                GeometryExtra.addPoint(builder, geom);
             } else if (geomType == GeometryTypeExtra.Circle) {
                 GeometryExtra.addCircle(builder, geom);
             } else {
@@ -128,7 +122,7 @@ public final class FlatBuffersHelper {
         return Geometries.rectangle(b.minX(), b.minY(), b.maxX(), b.maxY());
     }
 
-    static Line createLine(BoxExtra b) {
+    private static Line createLine(BoxExtra b) {
         return Geometries.line(b.minX(), b.minY(), b.maxX(), b.maxY());
     }
 

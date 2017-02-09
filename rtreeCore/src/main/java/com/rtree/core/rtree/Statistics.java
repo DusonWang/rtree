@@ -25,7 +25,7 @@ public final class Statistics {
         return count;
     }
 
-    public double sum() {
+    private double sum() {
         return sumX;
     }
 
@@ -33,27 +33,25 @@ public final class Statistics {
         return sumX2;
     }
 
-    public double mean() {
+    private double mean() {
         return sumX / count;
     }
 
-    public double sd() {
+    private double sd() {
         double m = mean();
         return Math.sqrt(sumX2 / count - m * m);
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Statistics [count=");
-        builder.append(count);
-        builder.append(", sum=");
-        builder.append(sum());
-        builder.append(", mean=");
-        builder.append(mean());
-        builder.append(", sd=");
-        builder.append(sd());
-        builder.append("]");
-        return builder.toString();
+        return "Statistics [count=" +
+                count +
+                ", sum=" +
+                sum() +
+                ", mean=" +
+                mean() +
+                ", sd=" +
+                sd() +
+                "]";
     }
 }

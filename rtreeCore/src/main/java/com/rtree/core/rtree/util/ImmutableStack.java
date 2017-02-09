@@ -12,7 +12,7 @@ public final class ImmutableStack<T> implements Iterable<T> {
     private final Optional<T> head;
     private final Optional<ImmutableStack<T>> tail;
 
-    public ImmutableStack(final T head, final ImmutableStack<T> tail) {
+    private ImmutableStack(final T head, final ImmutableStack<T> tail) {
         this(of(head), of(tail));
     }
 
@@ -21,7 +21,7 @@ public final class ImmutableStack<T> implements Iterable<T> {
         this.tail = tail;
     }
 
-    public ImmutableStack() {
+    private ImmutableStack() {
         this(Optional.<T>absent(), Optional.<ImmutableStack<T>>absent());
     }
 
@@ -58,7 +58,7 @@ public final class ImmutableStack<T> implements Iterable<T> {
     private static class StackIterator<U> implements Iterator<U> {
         private ImmutableStack<U> stack;
 
-        public StackIterator(final ImmutableStack<U> stack) {
+        StackIterator(final ImmutableStack<U> stack) {
             this.stack = stack;
         }
 
@@ -79,7 +79,6 @@ public final class ImmutableStack<T> implements Iterable<T> {
 
         @Override
         public void remove() {
-            return;
         }
     }
 

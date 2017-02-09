@@ -46,7 +46,7 @@ public final class Comparators {
 
     public static <T, S extends Geometry> Comparator<Entry<T, S>> ascendingDistance(
             final Rectangle r) {
-        return (Entry<T, S> e1, Entry<T, S> e2) -> Double.compare(e1.geometry().distance(r), e2.geometry().distance(r));
+        return Comparator.comparingDouble(e -> e.geometry().distance(r));
     }
 
 }

@@ -13,7 +13,7 @@ public class MyCirclePolyzer extends MyPolyBase {
     private static final long serialVersionUID = 1L;
     private Circle circle;
 
-    public static double distLawOfCosinesRAD(double lat1, double lon1, double lat2, double lon2) {
+    private static double distLawOfCosinesRAD(double lat1, double lon1, double lat2, double lon2) {
         double dLon = lon2 - lon1;
         double cosB = (Math.sin(lat1) * Math.sin(lat2)) + (Math.cos(lat1) * Math.cos(lat2) * Math.cos(dLon));
         if (cosB < -1.0d)

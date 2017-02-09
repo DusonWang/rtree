@@ -1,15 +1,15 @@
 package com.rtree.core.bean;
 
 public class Feature {
-    private GeojsonGeometries geometry;
+    private GeoJsonGeometries geometry;
     private String type;
     private String id;
 
-    public GeojsonGeometries getGeometry() {
+    public GeoJsonGeometries getGeometry() {
         return geometry;
     }
 
-    public void setGeometry(GeojsonGeometries geometry) {
+    public void setGeometry(GeoJsonGeometries geometry) {
         this.geometry = geometry;
     }
 

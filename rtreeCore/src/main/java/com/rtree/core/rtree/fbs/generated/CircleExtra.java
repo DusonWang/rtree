@@ -15,7 +15,7 @@ public final class CircleExtra extends Struct {
         return builder.offset();
     }
 
-    public CircleExtra init(int iTmp, ByteBuffer bbTmp) {
+    CircleExtra init(int iTmp, ByteBuffer bbTmp) {
         bb_pos = iTmp;
         bb = bbTmp;
         return this;

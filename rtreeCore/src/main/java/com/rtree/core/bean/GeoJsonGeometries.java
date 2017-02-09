@@ -1,6 +1,6 @@
 package com.rtree.core.bean;
 
-public class GeojsonGeometries {
+public class GeoJsonGeometries {
 
     private String type;
     private double[][][] coordinates;

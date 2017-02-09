@@ -11,7 +11,7 @@ public final class ContextBoxExtra extends Table {
         return getRootAsContext(bbTmp, new ContextBoxExtra());
     }
 
-    public static ContextBoxExtra getRootAsContext(ByteBuffer bbTmp, ContextBoxExtra obj) {
+    private static ContextBoxExtra getRootAsContext(ByteBuffer bbTmp, ContextBoxExtra obj) {
         bbTmp.order(ByteOrder.LITTLE_ENDIAN);
         return obj.init(bbTmp.getInt(bbTmp.position()) + bbTmp.position(), bbTmp);
     }
@@ -36,7 +36,7 @@ public final class ContextBoxExtra extends Table {
         return builder.endObject();
     }
 
-    public ContextBoxExtra init(int iTmp, ByteBuffer bbTmp) {
+    ContextBoxExtra init(int iTmp, ByteBuffer bbTmp) {
         bb_pos = iTmp;
         bb = bbTmp;
         return this;
@@ -46,7 +46,7 @@ public final class ContextBoxExtra extends Table {
         return bounds(new BoxExtra());
     }
 
-    public BoxExtra bounds(BoxExtra obj) {
+    private BoxExtra bounds(BoxExtra obj) {
         int o = __offset(4);
         return o != 0 ? obj.init(o + bb_pos, bb) : null;
     }

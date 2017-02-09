@@ -11,7 +11,7 @@ public final class NodeExtra extends Table {
         return getRootAsNode(bbTmp, new NodeExtra());
     }
 
-    public static NodeExtra getRootAsNode(ByteBuffer bbTmp, NodeExtra obj) {
+    private static NodeExtra getRootAsNode(ByteBuffer bbTmp, NodeExtra obj) {
         bbTmp.order(ByteOrder.LITTLE_ENDIAN);
         return obj.init(bbTmp.getInt(bbTmp.position()) + bbTmp.position(), bbTmp);
     }
@@ -51,7 +51,7 @@ public final class NodeExtra extends Table {
         return builder.endObject();
     }
 
-    public NodeExtra init(int iTmp, ByteBuffer bbTmp) {
+    NodeExtra init(int iTmp, ByteBuffer bbTmp) {
         bb_pos = iTmp;
         bb = bbTmp;
         return this;

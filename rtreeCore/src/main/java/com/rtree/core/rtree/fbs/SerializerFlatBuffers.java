@@ -71,7 +71,7 @@ public final class SerializerFlatBuffers<T, S extends Geometry> implements
     }
 
     @VisibleForTesting
-    static byte[] readFully(InputStream is, int numBytes) throws IOException {
+    private static byte[] readFully(InputStream is, int numBytes) throws IOException {
         byte[] b = new byte[numBytes];
         int n = is.read(b);
         if (n != numBytes)

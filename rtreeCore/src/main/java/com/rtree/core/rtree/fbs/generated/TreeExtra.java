@@ -11,7 +11,7 @@ public final class TreeExtra extends Table {
         return getRootAsTree(bbTmp, new TreeExtra());
     }
 
-    public static TreeExtra getRootAsTree(ByteBuffer bbTmp, TreeExtra obj) {
+    private static TreeExtra getRootAsTree(ByteBuffer bbTmp, TreeExtra obj) {
         bbTmp.order(ByteOrder.LITTLE_ENDIAN);
         return obj.init(bbTmp.getInt(bbTmp.position()) + bbTmp.position(), bbTmp);
     }
@@ -49,7 +49,7 @@ public final class TreeExtra extends Table {
         builder.finish(offset);
     }
 
-    public TreeExtra init(int iTmp, ByteBuffer bbTmp) {
+    private TreeExtra init(int iTmp, ByteBuffer bbTmp) {
         bb_pos = iTmp;
         bb = bbTmp;
         return this;
@@ -68,7 +68,7 @@ public final class TreeExtra extends Table {
         return root(new NodeExtra());
     }
 
-    public NodeExtra root(NodeExtra obj) {
+    private NodeExtra root(NodeExtra obj) {
         int o = __offset(6);
         return o != 0 ? obj.init(__indirect(o + bb_pos), bb) : null;
     }

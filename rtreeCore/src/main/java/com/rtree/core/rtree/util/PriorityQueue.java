@@ -230,8 +230,8 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
             a = Arrays.copyOf(a, a.length, Object[].class);
         int len = a.length;
         if (len == 1 || this.comparator != null)
-            for (int i = 0; i < len; i++)
-                if (a[i] == null)
+            for (Object anA : a)
+                if (anA == null)
                     return;
         this.queue = a;
         this.size = a.length;
@@ -345,14 +345,13 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * @param o element to be removed from this queue, if present
      * @return {@code true} if removed
      */
-    boolean removeEq(Object o) {
+    private void removeEq(Object o) {
         for (int i = 0; i < size; i++) {
             if (o == queue[i]) {
                 removeAt(i);
-                return true;
+                return;
             }
         }
-        return false;
     }
 
     /**
@@ -632,7 +631,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * @return the comparator used to order this queue, or {@code null} if this
      * queue is sorted according to the natural ordering of its elements
      */
-    public Comparator<? super E> comparator() {
+    private Comparator<? super E> comparator() {
         return comparator;
     }
 

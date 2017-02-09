@@ -15,7 +15,7 @@ public class Corner implements Serializable {
         this.polyY = polyY;
     }
 
-    public double getPolyX() {
+    double getPolyX() {
         return polyX;
     }
 
@@ -23,7 +23,7 @@ public class Corner implements Serializable {
         this.polyX = polyX;
     }
 
-    public double getPolyY() {
+    double getPolyY() {
         return polyY;
     }
 

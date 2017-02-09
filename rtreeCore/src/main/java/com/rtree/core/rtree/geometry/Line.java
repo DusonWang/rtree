@@ -101,17 +101,17 @@ public final class Line implements Geometry {
         return y2;
     }
 
-    public boolean intersects(Line b) {
+    boolean intersects(Line b) {
         Line2D line1 = new Float(x1, y1, x2, y2);
         Line2D line2 = new Float(b.x1(), b.y1(), b.x2(), b.y2());
         return line2.intersectsLine(line1);
     }
 
-    public boolean intersects(Point point) {
+    boolean intersects(Point point) {
         return intersects(point.mbr());
     }
 
-    public boolean intersects(Circle circle) {
+    boolean intersects(Circle circle) {
         Vector c = Vector.create(circle.x(), circle.y());
         Vector a = Vector.create(x1, y1);
         Vector cMinusA = c.minus(a);

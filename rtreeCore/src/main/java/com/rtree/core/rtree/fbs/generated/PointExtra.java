@@ -13,7 +13,7 @@ public final class PointExtra extends Struct {
         return builder.offset();
     }
 
-    public PointExtra init(int iTmp, ByteBuffer bbTmp) {
+    PointExtra init(int iTmp, ByteBuffer bbTmp) {
         bb_pos = iTmp;
         bb = bbTmp;
         return this;

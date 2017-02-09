@@ -9,7 +9,7 @@ public final class CircleHelper {
     /**
      * 圆心距离（单位：米） 转化成圆度数
      */
-    public static double getCircleDegreesByDis(double dis) {
+    private static double getCircleDegreesByDis(double dis) {
         return DistanceUtils.dist2Degrees(dis / 1000.0, DistanceUtils.EARTH_MEAN_RADIUS_KM);
     }
 

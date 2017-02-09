@@ -32,7 +32,7 @@ public final class Point implements Rectangle {
         return Math.sqrt(distanceSquared(p));
     }
 
-    public double distanceSquared(Point p) {
+    double distanceSquared(Point p) {
         float dx = x - p.x;
         float dy = y - p.y;
         return dx * dx + dy * dy;

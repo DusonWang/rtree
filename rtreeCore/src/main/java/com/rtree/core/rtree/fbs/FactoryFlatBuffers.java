@@ -13,7 +13,7 @@ public final class FactoryFlatBuffers<T, S extends Geometry> implements
     private final Func1<? super T, byte[]> serializer;
     private final Func1<byte[], ? extends T> deserializer;
 
-    public FactoryFlatBuffers(Func1<? super T, byte[]> serializer, Func1<byte[], ? extends T> deserializer) {
+    FactoryFlatBuffers(Func1<? super T, byte[]> serializer, Func1<byte[], ? extends T> deserializer) {
         Preconditions.checkNotNull(serializer);
         Preconditions.checkNotNull(deserializer);
         this.serializer = serializer;
@@ -35,11 +35,11 @@ public final class FactoryFlatBuffers<T, S extends Geometry> implements
         return Entries.entry(value, geometry);
     }
 
-    public Func1<? super T, byte[]> serializer() {
+    Func1<? super T, byte[]> serializer() {
         return serializer;
     }
 
-    public Func1<byte[], ? extends T> deserializer() {
+    Func1<byte[], ? extends T> deserializer() {
         return deserializer;
     }
 

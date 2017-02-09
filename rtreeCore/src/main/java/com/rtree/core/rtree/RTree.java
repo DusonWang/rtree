@@ -19,8 +19,8 @@ import static com.rtree.core.rtree.geometry.Geometries.rectangle;
 
 public final class RTree<T, S extends Geometry> {
 
-    public static final int MAX_CHILDREN_DEFAULT_GUTTMAN = 4;
-    public static final int MAX_CHILDREN_DEFAULT_STAR = 4;
+    static final int MAX_CHILDREN_DEFAULT_GUTTMAN = 4;
+    static final int MAX_CHILDREN_DEFAULT_STAR = 4;
     private static final Func1<Geometry, Boolean> ALWAYS_TRUE = (Geometry rectangle) -> true;
     private final static String marginIncrement = "  ";
     private final Optional<? extends Node<T, S>> root;
@@ -86,7 +86,7 @@ public final class RTree<T, S extends Geometry> {
         return new Builder().star();
     }
 
-    public static Func1<Geometry, Boolean> intersects(final Rectangle r) {
+    private static Func1<Geometry, Boolean> intersects(final Rectangle r) {
         return (Geometry g) -> g.intersects(r);
     }
 
@@ -152,7 +152,7 @@ public final class RTree<T, S extends Geometry> {
         return delete(context.factory().createEntry(value, geometry), false);
     }
 
-    public RTree<T, S> delete(Entry<? extends T, ? extends S> entry, boolean all) {
+    private RTree<T, S> delete(Entry<? extends T, ? extends S> entry, boolean all) {
         if (root.isPresent()) {
             NodeAndEntries<T, S> nodeAndEntries = root.get().delete(entry, all);
             if (nodeAndEntries.node().isPresent()
@@ -164,12 +164,12 @@ public final class RTree<T, S extends Geometry> {
             return this;
     }
 
-    public RTree<T, S> delete(Entry<? extends T, ? extends S> entry) {
+    private RTree<T, S> delete(Entry<? extends T, ? extends S> entry) {
         return delete(entry, false);
     }
 
     @VisibleForTesting
-    Observable<Entry<T, S>> search(Func1<? super Geometry, Boolean> condition) {
+    private Observable<Entry<T, S>> search(Func1<? super Geometry, Boolean> condition) {
         if (root.isPresent())
             return Observable.create(new OnSubscribeSearch<>(root.get(),
                     condition));
@@ -177,7 +177,7 @@ public final class RTree<T, S extends Geometry> {
             return Observable.empty();
     }
 
-    public Observable<Entry<T, S>> search(final Rectangle r) {
+    private Observable<Entry<T, S>> search(final Rectangle r) {
         return search(intersects(r));
     }
 
@@ -193,11 +193,11 @@ public final class RTree<T, S extends Geometry> {
         return search(line, Intersects.geometryIntersectsLine);
     }
 
-    public Observable<Entry<T, S>> search(final Rectangle r, final double maxDistance) {
+    private Observable<Entry<T, S>> search(final Rectangle r, final double maxDistance) {
         return search((Geometry g) -> g.distance(r) < maxDistance);
     }
 
-    public <R extends Geometry> Observable<Entry<T, S>> search(final R g, final Func2<? super S, ? super R, Boolean> intersects) {
+    private <R extends Geometry> Observable<Entry<T, S>> search(final R g, final Func2<? super S, ? super R, Boolean> intersects) {
         return search(g.mbr()).filter((Entry<T, S> entry) -> intersects.call(entry.geometry(), g));
     }
 
@@ -209,7 +209,7 @@ public final class RTree<T, S extends Geometry> {
         return search(p.mbr(), maxDistance);
     }
 
-    public Observable<Entry<T, S>> nearest(final Rectangle r, final double maxDistance, int maxCount) {
+    private Observable<Entry<T, S>> nearest(final Rectangle r, final double maxDistance, int maxCount) {
         return search(r, maxDistance).lift(new OperatorBoundedPriorityQueue<>(maxCount, Comparators.<T, S>ascendingDistance(r)));
     }
 
@@ -222,7 +222,7 @@ public final class RTree<T, S extends Geometry> {
     }
 
     @SuppressWarnings("unchecked")
-    public Visualizer visualize(int width, int height, Rectangle view) {
+    private Visualizer visualize(int width, int height, Rectangle view) {
         return new Visualizer((RTree<?, Geometry>) this, width, height, view);
     }
 
@@ -309,27 +309,27 @@ public final class RTree<T, S extends Geometry> {
         private Builder() {
         }
 
-        public Builder minChildren(int minChildren) {
+        Builder minChildren(int minChildren) {
             this.minChildren = of(minChildren);
             return this;
         }
 
-        public Builder maxChildren(int maxChildren) {
+        Builder maxChildren(int maxChildren) {
             this.maxChildren = of(maxChildren);
             return this;
         }
 
-        public Builder splitter(Splitter splitter) {
+        Builder splitter(Splitter splitter) {
             this.splitter = splitter;
             return this;
         }
 
-        public Builder selector(Selector selector) {
+        Builder selector(Selector selector) {
             this.selector = selector;
             return this;
         }
 
-        public Builder star() {
+        Builder star() {
             selector = new SelectorRStar();
             splitter = new SplitterRStar();
             star = true;

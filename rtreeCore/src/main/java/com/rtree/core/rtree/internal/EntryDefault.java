@@ -11,7 +11,7 @@ public final class EntryDefault<T, S extends Geometry> implements Entry<T, S> {
     private final T value;
     private final S geometry;
 
-    public EntryDefault(T value, S geometry) {
+    private EntryDefault(T value, S geometry) {
         Preconditions.checkNotNull(geometry);
         this.value = value;
         this.geometry = geometry;

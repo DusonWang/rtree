@@ -28,8 +28,8 @@ public final class RectangleImpl implements Rectangle {
         return new RectangleImpl(x1, y1, x2, y2);
     }
 
-    public static double distance(float x1, float y1, float x2, float y2, float a1, float b1,
-                                  float a2, float b2) {
+    static double distance(float x1, float y1, float x2, float y2, float a1, float b1,
+                           float a2, float b2) {
         if (intersects(x1, y1, x2, y2, a1, b1, a2, b2)) {
             return 0;
         }
