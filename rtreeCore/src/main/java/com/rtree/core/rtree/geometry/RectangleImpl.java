@@ -20,7 +20,7 @@ public final class RectangleImpl implements Rectangle {
         this.y2 = y2;
     }
 
-    static Rectangle create(double x1, double y1, double x2, double y2) {
+    public static Rectangle create(double x1, double y1, double x2, double y2) {
         return new RectangleImpl((float) x1, (float) y1, (float) x2, (float) y2);
     }
 

@@ -22,6 +22,14 @@
             <artifactId>jts</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-lgpl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-lgpl</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.davidmoten</groupId>
             <artifactId>guava-mini</artifactId>
             <version>0.1</version>
@@ -29,6 +37,10 @@
         <dependency>
             <groupId>io.reactivex</groupId>
             <artifactId>rxjava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.spatial4j</groupId>
+            <artifactId>spatial4j</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.davidmoten</groupId>

@@ -1,4 +1,4 @@
-package com.rtree.core.rtree.bean;
+package com.rtree.core.data;
 
 import java.io.Serializable;
 
