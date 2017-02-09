@@ -1,4 +1,4 @@
-package com.rtree.core.data;
+package com.rtree.core.bean;
 
 
 import com.rtree.core.rtree.geometry.Geometry;

@@ -1,4 +1,4 @@
-package com.rtree.core.data;
+package com.rtree.core.bean;
 
 public class Feature {
     private GeojsonGeometries geometry;
