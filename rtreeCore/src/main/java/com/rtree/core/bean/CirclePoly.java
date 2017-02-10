@@ -8,9 +8,8 @@ import com.rtree.core.rtree.geometry.Point;
 import java.util.Collections;
 import java.util.List;
 
-public class MyCirclePolyzer extends MyPolyBase {
+public class CirclePoly extends PolyBase {
 
-    private static final long serialVersionUID = 1L;
     private Circle circle;
 
     private static double distLawOfCosinesRAD(double lat1, double lon1, double lat2, double lon2) {
@@ -30,11 +29,7 @@ public class MyCirclePolyzer extends MyPolyBase {
 
     @Override
     public boolean searchPoint(Point point) {
-        double lng = this.circle.x();
-        double lat = this.circle.y();
-        double px = point.x();
-        double py = point.y();
-        return Double.compare(lng, px) == 0 && Double.compare(lat, py) == 0 || distLawOfCosinesRAD(lat, lng, px, py) >= this.circle.radius();
+        return circle.searchPoint(point);
     }
 
     public Circle getCircle() {
@@ -45,7 +40,6 @@ public class MyCirclePolyzer extends MyPolyBase {
         this.circle = circle;
     }
 
-    @Override
     public List<Corner> getCorner() {
         return Collections.emptyList();
     }

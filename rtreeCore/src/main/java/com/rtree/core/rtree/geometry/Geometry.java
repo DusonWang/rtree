@@ -7,4 +7,6 @@ public interface Geometry {
     Rectangle mbr();
 
     boolean intersects(Rectangle r);
+
+    boolean searchPoint(Point point);
 }

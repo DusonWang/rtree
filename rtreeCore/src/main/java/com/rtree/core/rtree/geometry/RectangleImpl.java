@@ -110,6 +110,12 @@ public final class RectangleImpl implements Rectangle {
     }
 
     @Override
+    public boolean searchPoint(Point point) {
+        assert point != null;
+        return point.x() >= x1 && point.x() <= x2 && point.y() >= y1 && point.y() <= y2;
+    }
+
+    @Override
     public double distance(Rectangle r) {
         return distance(x1, y1, x2, y2, r.x1(), r.y1(), r.x2(), r.y2());
     }

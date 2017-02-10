@@ -85,6 +85,13 @@ public final class Line implements Geometry {
         return RectangleIntersects.intersects(rect, line.toGeometry(gf));
     }
 
+    @Override
+    public boolean searchPoint(Point point) {
+        return Math.sqrt(Math.pow(point.x() - x1, 2) + Math.pow(point.y() - y1, 2))
+                + Math.sqrt(Math.pow(point.x() - x2, 2 + Math.pow(point.y() - y2, 2))) ==
+                Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    }
+
     public float x1() {
         return x1;
     }

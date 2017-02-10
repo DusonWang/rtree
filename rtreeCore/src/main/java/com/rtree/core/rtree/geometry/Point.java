@@ -28,10 +28,6 @@ public final class Point implements Rectangle {
         return RectangleImpl.distance(x, y, x, y, r.x1(), r.y1(), r.x2(), r.y2());
     }
 
-    public double distance(Point p) {
-        return Math.sqrt(distanceSquared(p));
-    }
-
     double distanceSquared(Point p) {
         float dx = x - p.x;
         float dy = y - p.y;
@@ -41,6 +37,11 @@ public final class Point implements Rectangle {
     @Override
     public boolean intersects(Rectangle r) {
         return r.x1() <= x && x <= r.x2() && r.y1() <= y && y <= r.y2();
+    }
+
+    @Override
+    public boolean searchPoint(Point point) {
+        return this.equals(point);
     }
 
     public float x() {

@@ -4,7 +4,7 @@ import com.rtree.core.rtree.geometry.Rectangle;
 import com.rtree.core.rtree.geometry.RectangleImpl;
 import com.spatial4j.core.distance.DistanceUtils;
 
-public final class CircleHelper {
+public final class CircleUtil {
 
     /**
      * 圆心距离（单位：米） 转化成圆度数
