@@ -31,15 +31,6 @@ public final class RectangleImpl implements Rectangle {
         return new RectangleImpl(x1, y1, x2, y2);
     }
 
-    Polygon createPolygon() {
-        List<Point> list = new ArrayList<>();
-        list.add(Point.create(x1, y1));
-        list.add(Point.create(x2, y1));
-        list.add(Point.create(x2, y2));
-        list.add(Point.create(x1, y2));
-        return new Polygon(list);
-    }
-
     static double distance(float x1, float y1, float x2, float y2, float a1, float b1,
                            float a2, float b2) {
         if (intersects(x1, y1, x2, y2, a1, b1, a2, b2)) {
@@ -56,7 +47,7 @@ public final class RectangleImpl implements Rectangle {
         float mostUpY1 = xyMostDown ? b1 : y1;
         float mostDownY2 = xyMostDown ? y2 : b2;
 
-        double yDifference =  Math.max(0, mostDownY1 == mostUpY1 ? 0 : mostUpY1 - mostDownY2);
+        double yDifference = Math.max(0, mostDownY1 == mostUpY1 ? 0 : mostUpY1 - mostDownY2);
 
         return Math.sqrt(xDifference * xDifference + yDifference * yDifference);
     }
@@ -66,6 +57,14 @@ public final class RectangleImpl implements Rectangle {
         return x1 <= a2 && a1 <= x2 && y1 <= b2 && b1 <= y2;
     }
 
+    Polygon createPolygon() {
+        List<Point> list = new ArrayList<>();
+        list.add(Point.create(x1, y1));
+        list.add(Point.create(x2, y1));
+        list.add(Point.create(x2, y2));
+        list.add(Point.create(x1, y2));
+        return new Polygon(list);
+    }
 
     @Override
     public float x1() {

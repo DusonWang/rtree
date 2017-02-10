@@ -7,6 +7,7 @@ import com.rtree.core.rtree.geometry.Polygon;
 public final class PolygonPoly extends PolyBase {
 
     private static final long serialVersionUID = 1L;
+    private Polygon polygon;
 
     public Polygon getPolygon() {
         return polygon;
@@ -15,9 +16,6 @@ public final class PolygonPoly extends PolyBase {
     public void setPolygon(Polygon polygon) {
         this.polygon = polygon;
     }
-
-    private Polygon polygon;
-
 
     public boolean searchPoint(Point point) {
         return polygon.searchPoint(point);

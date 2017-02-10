@@ -5,7 +5,6 @@ import com.rtree.core.rtree.geometry.Geometry;
 import com.rtree.core.rtree.geometry.Point;
 
 import java.io.Serializable;
-import java.util.List;
 
 public abstract class PolyBase implements Serializable {
 

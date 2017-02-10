@@ -4,30 +4,8 @@ import rx.functions.Func2;
 
 public final class Intersects {
 
-    private static final Func2<Circle, Rectangle, Boolean> circleIntersectsRectangle = Circle::intersects;
-
-    public static final Func2<Rectangle, Circle, Boolean> rectangleIntersectsCircle = (Rectangle rectangle, Circle circle) -> circleIntersectsRectangle.call(circle, rectangle);
-
-    private static final Func2<Circle, Point, Boolean> circleIntersectsPoint = Circle::intersects;
-
-    public static final Func2<Point, Circle, Boolean> pointIntersectsCircle = (Point point, Circle circle) -> circleIntersectsPoint.call(circle, point);
-
     public static final Func2<Circle, Circle, Boolean> circleIntersectsCircle = Circle::intersects;
-
     public static final Func2<Line, Line, Boolean> lineIntersectsLine = Line::intersects;
-
-    private static final Func2<Rectangle, Line, Boolean> rectangleIntersectsLine = (Rectangle r, Line a) -> a.intersects(r);
-
-    public static final Func2<Line, Rectangle, Boolean> lineIntersectsRectangle = (Line a, Rectangle r) -> rectangleIntersectsLine.call(r, a);
-
-    private static final Func2<Circle, Line, Boolean> circleIntersectsLine = (Circle c, Line a) -> a.intersects(c);
-
-    public static final Func2<Line, Circle, Boolean> lineIntersectsCircle = (Line a, Circle c) -> circleIntersectsLine.call(c, a);
-
-    private static final Func2<Point, Line, Boolean> pointIntersectsLine = (Point point, Line line) -> line.intersects(point);
-
-    public static final Func2<Line, Point, Boolean> lineIntersectsPoint = (Line line, Point point) -> pointIntersectsLine.call(point, line);
-
     public static final Func2<Geometry, Line, Boolean> geometryIntersectsLine = (Geometry geometry, Line line) -> {
         if (geometry instanceof Line)
             return line.intersects((Line) geometry);
@@ -51,7 +29,16 @@ public final class Intersects {
         else return null;
     };
     public static final Func2<Circle, Geometry, Boolean> circleIntersectsGeometry = (Circle circle, Geometry geometry) -> geometryIntersectsCircle.call(geometry, circle);
-
+    private static final Func2<Circle, Rectangle, Boolean> circleIntersectsRectangle = Circle::intersects;
+    public static final Func2<Rectangle, Circle, Boolean> rectangleIntersectsCircle = (Rectangle rectangle, Circle circle) -> circleIntersectsRectangle.call(circle, rectangle);
+    private static final Func2<Circle, Point, Boolean> circleIntersectsPoint = Circle::intersects;
+    public static final Func2<Point, Circle, Boolean> pointIntersectsCircle = (Point point, Circle circle) -> circleIntersectsPoint.call(circle, point);
+    private static final Func2<Rectangle, Line, Boolean> rectangleIntersectsLine = (Rectangle r, Line a) -> a.intersects(r);
+    public static final Func2<Line, Rectangle, Boolean> lineIntersectsRectangle = (Line a, Rectangle r) -> rectangleIntersectsLine.call(r, a);
+    private static final Func2<Circle, Line, Boolean> circleIntersectsLine = (Circle c, Line a) -> a.intersects(c);
+    public static final Func2<Line, Circle, Boolean> lineIntersectsCircle = (Line a, Circle c) -> circleIntersectsLine.call(c, a);
+    private static final Func2<Point, Line, Boolean> pointIntersectsLine = (Point point, Line line) -> line.intersects(point);
+    public static final Func2<Line, Point, Boolean> lineIntersectsPoint = (Line line, Point point) -> pointIntersectsLine.call(point, line);
     private static final Func2<Geometry, Rectangle, Boolean> geometryIntersectsRectangle = (Geometry geometry, Rectangle r) -> {
         if (geometry instanceof Line)
             return geometry.intersects(r);

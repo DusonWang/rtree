@@ -31,6 +31,14 @@ public class Line implements Geometry {
     Line() {
     }
 
+    static Line create(float x1, float y1, float x2, float y2) {
+        return new Line(x1, y1, x2, y2);
+    }
+
+    static Line create(double x1, double y1, double x2, double y2) {
+        return new Line((float) x1, (float) y1, (float) x2, (float) y2);
+    }
+
     private int relativeCCW(double x1, double y1, double x2, double y2,
                             double px, double py) {
         x2 -= x1;
@@ -60,14 +68,6 @@ public class Line implements Geometry {
         return ((relativeCCW(x1, y1, x2, y2, x3, y3)
                 * relativeCCW(x1, y1, x2, y2, x4, y4) <= 0) && (relativeCCW(x3,
                 y3, x4, y4, x1, y1) * relativeCCW(x3, y3, x4, y4, x2, y2) <= 0));
-    }
-
-    static Line create(float x1, float y1, float x2, float y2) {
-        return new Line(x1, y1, x2, y2);
-    }
-
-    static Line create(double x1, double y1, double x2, double y2) {
-        return new Line((float) x1, (float) y1, (float) x2, (float) y2);
     }
 
     @Override

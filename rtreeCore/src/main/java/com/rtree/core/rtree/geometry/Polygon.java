@@ -6,12 +6,42 @@ import java.util.List;
 /**
  * Created by wangds on 17/2/10.
  */
-public final class Polygon extends  Line implements HasGeometry, Geometry {
+public final class Polygon extends Line implements HasGeometry, Geometry {
 
     private List<Point> points;  //多边形的顶点
 
+    Polygon(List<Point> points) {
+        this.points = points;
+    }
+
+    public static void main(String[] args) {
+        String str1 = "116.385603,39.937328,116.38616,39.93638,116.387422,39.936712,116.387476,39.93758,116.386371,39.937621";
+        String str2 = "116.385805,39.937649,116.385379,39.937003,116.384894,39.937452,116.385055,39.93776";
+        Polygon p1 = convertToPoly(str1);
+        Polygon p2 = convertToPoly(str2);
+        boolean result = p1.polygonsIntersect(p2);
+        System.out.println("是否相交：" + result);
+        Rectangle r = p1.geometry();
+        System.out.println(r);
+    }
+
+    private static Polygon convertToPoly(String str) {
+        String[] array = str.split(",");
+        List<Point> corner = new ArrayList<>();
+        for (int i = 0; i < array.length; i += 2) {
+            Point c = Point.create(Double.parseDouble(array[i]),
+                    Double.parseDouble(array[i + 1]));
+            corner.add(c);
+        }
+        return new Polygon(corner);
+    }
+
     List<Point> getPoints() {
         return points;
+    }
+
+    public void setPoints(List<Point> points) {
+        this.points = points;
     }
 
     @Override
@@ -31,8 +61,6 @@ public final class Polygon extends  Line implements HasGeometry, Geometry {
         }
         return null;
     }
-
-
 
     private boolean polygonsIntersect(Polygon p) {
         // 如果一个范围包含另一个范围，则返回true;
@@ -57,16 +85,6 @@ public final class Polygon extends  Line implements HasGeometry, Geometry {
         }
         return false;
     }
-
-    public void setPoints(List<Point> points) {
-        this.points = points;
-    }
-
-
-    Polygon(List<Point> points) {
-        this.points = points;
-    }
-
 
     @Override
     public double distance(Rectangle r) {
@@ -144,27 +162,5 @@ public final class Polygon extends  Line implements HasGeometry, Geometry {
             }
         }
         return ((hits & 1) != 0);
-    }
-
-    public static void main(String[] args) {
-        String str1 = "116.385603,39.937328,116.38616,39.93638,116.387422,39.936712,116.387476,39.93758,116.386371,39.937621";
-        String str2 = "116.385805,39.937649,116.385379,39.937003,116.384894,39.937452,116.385055,39.93776";
-        Polygon p1 = convertToPoly(str1);
-        Polygon p2 = convertToPoly(str2);
-        boolean result = p1.polygonsIntersect(p2);
-        System.out.println("是否相交：" + result);
-        Rectangle r = p1.geometry();
-        System.out.println(r);
-    }
-
-    private static Polygon convertToPoly(String str) {
-        String[] array = str.split(",");
-        List<Point> corner = new ArrayList<>();
-        for (int i = 0; i < array.length; i += 2) {
-            Point c = Point.create(Double.parseDouble(array[i]),
-                    Double.parseDouble(array[i + 1]));
-            corner.add(c);
-        }
-        return new Polygon(corner);
     }
 }
