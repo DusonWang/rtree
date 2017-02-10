@@ -14,7 +14,7 @@ import java.util.List;
 public final class RectangleImpl implements Rectangle {
     private final float x1, y1, x2, y2;
 
-    private RectangleImpl(float x1, float y1, float x2, float y2) {
+    RectangleImpl(float x1, float y1, float x2, float y2) {
         Preconditions.checkArgument(x2 >= x1);
         Preconditions.checkArgument(y2 >= y1);
         this.x1 = x1;

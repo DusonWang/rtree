@@ -21,7 +21,7 @@ public class Line implements Geometry {
     private float x2;
     private float y2;
 
-    private Line(float x1, float y1, float x2, float y2) {
+    Line(float x1, float y1, float x2, float y2) {
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;

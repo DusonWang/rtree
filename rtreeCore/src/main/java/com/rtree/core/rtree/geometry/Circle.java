@@ -4,6 +4,8 @@ import com.github.davidmoten.guavamini.Objects;
 import com.github.davidmoten.guavamini.Optional;
 import com.rtree.core.rtree.util.ObjectsHelper;
 
+import java.util.List;
+
 import static com.rtree.core.rtree.geometry.Geometries.point;
 import static com.spatial4j.core.distance.DistanceUtils.distLawOfCosinesRAD;
 
@@ -69,6 +71,12 @@ public final class Circle implements Geometry {
     }
 
     boolean intersects(Polygon r) {
+        List<Point> list = r.getPoints();
+        int size = list.size();
+        for (int j = 0; j < size - 1; j++) {
+            if (intersects(new Line(list.get(j).x(), list.get(j).y(), list.get(j + 1).x(), list.get(j + 1).y())))
+                return true;
+        }
         return false;
     }
 
