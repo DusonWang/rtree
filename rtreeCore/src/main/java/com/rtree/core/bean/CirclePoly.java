@@ -8,7 +8,7 @@ import com.rtree.core.rtree.geometry.Point;
 import java.util.Collections;
 import java.util.List;
 
-public class CirclePoly extends PolyBase {
+public final class CirclePoly extends PolyBase {
 
     private Circle circle;
 

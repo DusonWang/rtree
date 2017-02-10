@@ -1,5 +1,6 @@
 package com.rtree.core.rtree.geometry;
 
+
 public interface Geometry {
 
     double distance(Rectangle r);

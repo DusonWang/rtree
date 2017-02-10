@@ -68,6 +68,10 @@ public final class Circle implements Geometry {
         return point(x, y).distanceSquared(point(c.x, c.y)) <= total * total;
     }
 
+    boolean intersects(Polygon r) {
+        return false;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hashCode(x, y, radius);

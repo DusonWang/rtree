@@ -35,6 +35,8 @@ public final class Intersects {
             return line.intersects((Rectangle) geometry);
         else if (geometry instanceof Circle)
             return line.intersects((Circle) geometry);
+        else if (geometry instanceof Polygon)
+            return line.intersects((Polygon) geometry);
         else return null;
     };
     public static final Func2<Geometry, Circle, Boolean> geometryIntersectsCircle = (Geometry geometry, Circle circle) -> {
@@ -44,6 +46,8 @@ public final class Intersects {
             return circle.intersects((Rectangle) geometry);
         else if (geometry instanceof Circle)
             return circle.intersects((Circle) geometry);
+        else if (geometry instanceof Polygon)
+            return circle.intersects((Polygon) geometry);
         else return null;
     };
     public static final Func2<Circle, Geometry, Boolean> circleIntersectsGeometry = (Circle circle, Geometry geometry) -> geometryIntersectsCircle.call(geometry, circle);
@@ -54,6 +58,8 @@ public final class Intersects {
         else if (geometry instanceof Rectangle)
             return r.intersects((Rectangle) geometry);
         else if (geometry instanceof Circle)
+            return geometry.intersects(r);
+        else if (geometry instanceof Polygon)
             return geometry.intersects(r);
         else return null;
     };

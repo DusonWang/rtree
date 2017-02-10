@@ -5,6 +5,9 @@ import com.github.davidmoten.guavamini.Optional;
 import com.github.davidmoten.guavamini.Preconditions;
 import com.rtree.core.rtree.util.ObjectsHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by wangds on 17/2/8.
  */
@@ -28,6 +31,15 @@ public final class RectangleImpl implements Rectangle {
         return new RectangleImpl(x1, y1, x2, y2);
     }
 
+    Polygon createPolygon() {
+        List<Point> list = new ArrayList<>();
+        list.add(Point.create(x1, y1));
+        list.add(Point.create(x2, y1));
+        list.add(Point.create(x2, y2));
+        list.add(Point.create(x1, y2));
+        return new Polygon(list);
+    }
+
     static double distance(float x1, float y1, float x2, float y2, float a1, float b1,
                            float a2, float b2) {
         if (intersects(x1, y1, x2, y2, a1, b1, a2, b2)) {
@@ -37,14 +49,14 @@ public final class RectangleImpl implements Rectangle {
         float mostLeftX1 = xyMostLeft ? x1 : a1;
         float mostRightX1 = xyMostLeft ? a1 : x1;
         float mostLeftX2 = xyMostLeft ? x2 : a2;
-        double xDifference = max(0, mostLeftX1 == mostRightX1 ? 0 : mostRightX1 - mostLeftX2);
+        double xDifference = Math.max(0, mostLeftX1 == mostRightX1 ? 0 : mostRightX1 - mostLeftX2);
 
         boolean xyMostDown = y1 < b1;
         float mostDownY1 = xyMostDown ? y1 : b1;
         float mostUpY1 = xyMostDown ? b1 : y1;
         float mostDownY2 = xyMostDown ? y2 : b2;
 
-        double yDifference = max(0, mostDownY1 == mostUpY1 ? 0 : mostUpY1 - mostDownY2);
+        double yDifference =  Math.max(0, mostDownY1 == mostUpY1 ? 0 : mostUpY1 - mostDownY2);
 
         return Math.sqrt(xDifference * xDifference + yDifference * yDifference);
     }
@@ -54,19 +66,6 @@ public final class RectangleImpl implements Rectangle {
         return x1 <= a2 && a1 <= x2 && y1 <= b2 && b1 <= y2;
     }
 
-    private static float max(float a, float b) {
-        if (a < b)
-            return b;
-        else
-            return a;
-    }
-
-    private static float min(float a, float b) {
-        if (a < b)
-            return a;
-        else
-            return b;
-    }
 
     @Override
     public float x1() {
@@ -95,8 +94,8 @@ public final class RectangleImpl implements Rectangle {
 
     @Override
     public Rectangle add(Rectangle r) {
-        return new RectangleImpl(min(x1, r.x1()), min(y1, r.y1()), max(x2, r.x2()),
-                max(y2, r.y2()));
+        return new RectangleImpl(Math.min(x1, r.x1()), Math.min(y1, r.y1()), Math.max(x2, r.x2()),
+                Math.max(y2, r.y2()));
     }
 
     @Override
@@ -146,7 +145,7 @@ public final class RectangleImpl implements Rectangle {
         if (!intersects(r))
             return 0;
         else
-            return create(max(x1, r.x1()), max(y1, r.y1()), min(x2, r.x2()), min(y2, r.y2()))
+            return create(Math.max(x1, r.x1()), Math.max(y1, r.y1()), Math.min(x2, r.x2()), Math.min(y2, r.y2()))
                     .area();
     }
 

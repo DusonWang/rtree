@@ -12,19 +12,54 @@ import com.vividsolutions.jts.util.GeometricShapeFactory;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Line2D.Float;
+import java.util.List;
 
-public final class Line implements Geometry {
+public class Line implements Geometry {
 
-    private final float x1;
-    private final float y1;
-    private final float x2;
-    private final float y2;
+    private float x1;
+    private float y1;
+    private float x2;
+    private float y2;
 
     private Line(float x1, float y1, float x2, float y2) {
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
+    }
+
+    Line() {
+    }
+
+    private int relativeCCW(double x1, double y1, double x2, double y2,
+                            double px, double py) {
+        x2 -= x1;
+        y2 -= y1;
+        px -= x1;
+        py -= y1;
+        double ccw = px * y2 - py * x2;
+        if (ccw == 0.0d) {
+            ccw = px * x2 + py * y2;
+            if (ccw > 0.0d) {
+                px -= x2;
+                py -= y2;
+                ccw = px * x2 + py * y2;
+                if (ccw < 0.0d) {
+                    ccw = 0.0d;
+                }
+            }
+        }
+        return (ccw < 0.0d) ? -1 : ((ccw > 0.0d) ? 1 : 0);
+    }
+
+    /**
+     * 判断两个线段是否相交
+     */
+    boolean linesIntersect(double x1, double y1, double x2, double y2,
+                           double x3, double y3, double x4, double y4) {
+        return ((relativeCCW(x1, y1, x2, y2, x3, y3)
+                * relativeCCW(x1, y1, x2, y2, x4, y4) <= 0) && (relativeCCW(x3,
+                y3, x4, y4, x1, y1) * relativeCCW(x3, y3, x4, y4, x2, y2) <= 0));
     }
 
     static Line create(float x1, float y1, float x2, float y2) {
@@ -137,6 +172,24 @@ public final class Line implements Geometry {
                 return cMinusA.modulusSquared() <= radiusSquared || c.minus(b).modulusSquared() <= radiusSquared;
             }
         }
+    }
+
+    boolean intersects(com.rtree.core.rtree.geometry.Polygon polygon) {
+        List<Point> points = polygon.getPoints();
+        int size = points.size() - 1;
+        double x = points.get(size).x();
+        double y = points.get(size).y();
+        if (searchPoint(Point.create(x, y)))
+            return true;
+        x = points.get(size).x();
+        y = points.get(size).y();
+        if (polygon.searchPoint(Point.create(x, y)))
+            return true;
+        for (int i = 0; i < size; i++) {
+            if (linesIntersect(points.get(i).x(), points.get(i).y(), points.get(i + 1).x(), points.get(i + 1).y(), x1, y1, x2, y2))
+                return true;
+        }
+        return false;
     }
 
     @Override

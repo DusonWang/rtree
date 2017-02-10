@@ -6,15 +6,12 @@ import java.util.List;
 /**
  * Created by wangds on 17/2/10.
  */
-public class Polygon implements HasGeometry, Geometry {
+public final class Polygon extends  Line implements HasGeometry, Geometry {
 
     private List<Point> points;  //多边形的顶点
 
-    private Polygon(List<Point> points) {
-        this.points = points;
-    }
-
-    public Polygon() {
+    List<Point> getPoints() {
+        return points;
     }
 
     @Override
@@ -35,36 +32,7 @@ public class Polygon implements HasGeometry, Geometry {
         return null;
     }
 
-    private int relativeCCW(double x1, double y1, double x2, double y2,
-                            double px, double py) {
-        x2 -= x1;
-        y2 -= y1;
-        px -= x1;
-        py -= y1;
-        double ccw = px * y2 - py * x2;
-        if (ccw == 0.0) {
-            ccw = px * x2 + py * y2;
-            if (ccw > 0.0) {
-                px -= x2;
-                py -= y2;
-                ccw = px * x2 + py * y2;
-                if (ccw < 0.0) {
-                    ccw = 0.0;
-                }
-            }
-        }
-        return (ccw < 0.0) ? -1 : ((ccw > 0.0) ? 1 : 0);
-    }
 
-    /**
-     * 判断两个线段是否相交
-     */
-    private boolean linesIntersect(double x1, double y1, double x2, double y2,
-                                   double x3, double y3, double x4, double y4) {
-        return ((relativeCCW(x1, y1, x2, y2, x3, y3)
-                * relativeCCW(x1, y1, x2, y2, x4, y4) <= 0) && (relativeCCW(x3,
-                y3, x4, y4, x1, y1) * relativeCCW(x3, y3, x4, y4, x2, y2) <= 0));
-    }
 
     private boolean polygonsIntersect(Polygon p) {
         // 如果一个范围包含另一个范围，则返回true;
@@ -90,19 +58,29 @@ public class Polygon implements HasGeometry, Geometry {
         return false;
     }
 
+    public void setPoints(List<Point> points) {
+        this.points = points;
+    }
+
+
+    Polygon(List<Point> points) {
+        this.points = points;
+    }
+
+
     @Override
     public double distance(Rectangle r) {
-        return 0;
+        return r.distance(this.geometry());
     }
 
     @Override
     public Rectangle mbr() {
-        return null;
+        return this.geometry();
     }
 
     @Override
     public boolean intersects(Rectangle r) {
-        return false;
+        return this.polygonsIntersect(new RectangleImpl(r.x1(), r.x2(), r.y1(), r.y2()).createPolygon());
     }
 
     @Override
