@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by wangds on 17/2/10.
  */
-public final class Polygon extends Line implements HasGeometry, Geometry {
+public final class Polygon implements HasGeometry, Geometry {
 
     private List<Point> points;  //多边形的顶点
 
@@ -75,7 +75,7 @@ public final class Polygon extends Line implements HasGeometry, Geometry {
             return true;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < this.points.size() - 1; j++) {
-                if (linesIntersect(p.points.get(i).x(), p.points.get(i)
+                if (Line.linesIntersect(p.points.get(i).x(), p.points.get(i)
                                 .y(), p.points.get(i + 1).x(), p.points
                                 .get(i + 1).y(), this.points.get(j).x(),
                         this.points.get(j).y(), this.points.get(j + 1)

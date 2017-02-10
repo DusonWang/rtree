@@ -39,8 +39,8 @@ public class Line implements Geometry {
         return new Line((float) x1, (float) y1, (float) x2, (float) y2);
     }
 
-    private int relativeCCW(double x1, double y1, double x2, double y2,
-                            double px, double py) {
+    private static int relativeCCW(double x1, double y1, double x2, double y2,
+                                   double px, double py) {
         x2 -= x1;
         y2 -= y1;
         px -= x1;
@@ -63,8 +63,8 @@ public class Line implements Geometry {
     /**
      * 判断两个线段是否相交
      */
-    boolean linesIntersect(double x1, double y1, double x2, double y2,
-                           double x3, double y3, double x4, double y4) {
+    static boolean linesIntersect(double x1, double y1, double x2, double y2,
+                                  double x3, double y3, double x4, double y4) {
         return ((relativeCCW(x1, y1, x2, y2, x3, y3)
                 * relativeCCW(x1, y1, x2, y2, x4, y4) <= 0) && (relativeCCW(x3,
                 y3, x4, y4, x1, y1) * relativeCCW(x3, y3, x4, y4, x2, y2) <= 0));

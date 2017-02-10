@@ -11,7 +11,6 @@ import java.util.List;
 public final class CirclePoly extends PolyBase {
 
     private Circle circle;
-    private static final long serialVersionUID = 1L;
     @Override
     public boolean searchPoint(Point point) {
         return circle.searchPoint(point);

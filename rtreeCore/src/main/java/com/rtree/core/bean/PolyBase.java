@@ -4,9 +4,7 @@ package com.rtree.core.bean;
 import com.rtree.core.rtree.geometry.Geometry;
 import com.rtree.core.rtree.geometry.Point;
 
-import java.io.Serializable;
-
-public abstract class PolyBase implements Serializable {
+public abstract class PolyBase {
 
     private Geometry geometry;
     private String id;
