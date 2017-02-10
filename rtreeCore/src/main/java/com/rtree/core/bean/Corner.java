@@ -3,9 +3,7 @@ package com.rtree.core.bean;
 import java.io.Serializable;
 
 public class Corner implements Serializable {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
     private double polyX;
     private double polyY;
