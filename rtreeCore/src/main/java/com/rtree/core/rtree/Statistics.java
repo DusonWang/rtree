@@ -17,8 +17,7 @@ public final class Statistics {
     }
 
     public Statistics add(Number number) {
-        double x = number.doubleValue();
-        return new Statistics(count + 1, sumX + x, sumX2 + x * x);
+        return new Statistics(count + 1, sumX + number.doubleValue(), sumX2 + number.doubleValue() * number.doubleValue());
     }
 
     public long count() {
@@ -38,8 +37,7 @@ public final class Statistics {
     }
 
     private double sd() {
-        double m = mean();
-        return Math.sqrt(sumX2 / count - m * m);
+        return Math.sqrt(sumX2 / count - Math.pow(mean(), 2));
     }
 
     @Override

@@ -78,12 +78,12 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      * n, n <= d. The element with the lowest value is in queue[0], assuming the
      * queue is nonempty.
      */
-    transient Object[] queue; // non-private to simplify nested class access
+    private transient Object[] queue; // non-private to simplify nested class access
     /**
      * The number of times this priority queue has been <i>structurally
      * modified</i>. See AbstractList for gory details.
      */
-    transient int modCount = 0; // non-private to simplify nested class access
+    private transient int modCount = 0; // non-private to simplify nested class access
     /**
      * The number of elements in the priority queue.
      */
@@ -119,7 +119,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      *                   of the elements will be used.
      * @since 1.8
      */
-    public PriorityQueue(Comparator<? super E> comparator) {
+    PriorityQueue(Comparator<? super E> comparator) {
         this(DEFAULT_INITIAL_CAPACITY, comparator);
     }
 
@@ -133,7 +133,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
      *                        of the elements will be used.
      * @throws IllegalArgumentException if {@code initialCapacity} is less than 1
      */
-    public PriorityQueue(int initialCapacity, Comparator<? super E> comparator) {
+    private PriorityQueue(int initialCapacity, Comparator<? super E> comparator) {
         // Note: This restriction of at least one is not actually needed,
         // but continues for 1.5 compatibility
         if (initialCapacity < 1)
@@ -659,7 +659,7 @@ public class PriorityQueue<E> extends AbstractQueue<E> implements
 
     /**
      * Reconstitutes the {@code PriorityQueue} instance from a stream (that is,
-     * deserializes it).
+     * deserializers it).
      *
      * @param s the stream
      * @throws java.io.IOException    when a problem occurs reading the object

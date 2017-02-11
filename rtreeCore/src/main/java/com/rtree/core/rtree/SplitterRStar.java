@@ -91,7 +91,10 @@ public final class SplitterRStar implements Splitter {
     }
 
     private enum SortType {
-        X_LOWER, X_UPPER, Y_LOWER, Y_UPPER;
+        X_LOWER,
+        X_UPPER,
+        Y_LOWER,
+        Y_UPPER;
     }
 
 }
