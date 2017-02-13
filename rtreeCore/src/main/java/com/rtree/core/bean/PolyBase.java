@@ -6,8 +6,8 @@ import com.rtree.core.rtree.geometry.Point;
 
 public abstract class PolyBase {
 
-    private Geometry geometry;
     private String id;
+    private Geometry geometry;
 
     public String getId() {
         return id;

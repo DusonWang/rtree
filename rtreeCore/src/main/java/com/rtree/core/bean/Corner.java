@@ -1,6 +1,6 @@
 package com.rtree.core.bean;
 
-public class Corner {
+public final class Corner {
 
     private double polyX;
     private double polyY;
