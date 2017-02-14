@@ -35,7 +35,7 @@ public final class RTree<T, S extends Geometry> {
     }
 
     private RTree() {
-        this(Optional.<Node<T, S>>absent(), 0, null);
+        this(Optional.absent(), 0, null);
     }
 
     private RTree(Node<T, S> root, int size, Context<T, S> context) {
@@ -237,7 +237,7 @@ public final class RTree<T, S extends Geometry> {
             else
                 return of(entry.geometry().mbr());
         };
-        return tree.entries().reduce(Optional.<Rectangle>absent(), func2).toBlocking().single().or(rectangle(0, 0, 0, 0));
+        return tree.entries().reduce(Optional.absent(), func2).toBlocking().single().or(rectangle(0, 0, 0, 0));
     }
 
     public Optional<? extends Node<T, S>> root() {
@@ -351,7 +351,7 @@ public final class RTree<T, S extends Geometry> {
                     maxChildren = of(MAX_CHILDREN_DEFAULT_GUTTMAN);
             if (!minChildren.isPresent())
                 minChildren = of((int) Math.round(maxChildren.get() * DEFAULT_FILLING_FACTOR));
-            return new RTree<>(Optional.<Node<T, S>>absent(), 0,
+            return new RTree<>(Optional.absent(), 0,
                     new Context<>(minChildren.get(), maxChildren.get(), selector, splitter, (Factory<T, S>) factory));
         }
 

@@ -14,28 +14,6 @@ public final class Polygon implements HasGeometry, Geometry {
         this.points = points;
     }
 
-    public static void main(String[] args) {
-        String str1 = "116.385603,39.937328,116.38616,39.93638,116.387422,39.936712,116.387476,39.93758,116.386371,39.937621";
-        String str2 = "116.385805,39.937649,116.385379,39.937003,116.384894,39.937452,116.385055,39.93776";
-        Polygon p1 = convertToPoly(str1);
-        Polygon p2 = convertToPoly(str2);
-        boolean result = p1.polygonsIntersect(p2);
-        System.out.println("是否相交：" + result);
-        Rectangle r = p1.geometry();
-        System.out.println(r);
-    }
-
-    private static Polygon convertToPoly(String str) {
-        String[] array = str.split(",");
-        List<Point> corner = new ArrayList<>();
-        for (int i = 0; i < array.length; i += 2) {
-            Point c = Point.create(Double.parseDouble(array[i]),
-                    Double.parseDouble(array[i + 1]));
-            corner.add(c);
-        }
-        return new Polygon(corner);
-    }
-
     List<Point> getPoints() {
         return points;
     }
@@ -161,6 +139,28 @@ public final class Polygon implements HasGeometry, Geometry {
                 hits++;
             }
         }
-        return ((hits & 1) != 0);
+        return (hits & 1) != 0;
+    }
+
+    private static Polygon convertToPoly(String str) {
+        String[] array = str.split(",");
+        List<Point> corner = new ArrayList<>();
+        for (int i = 0; i < array.length; i += 2) {
+            Point c = Point.create(Double.parseDouble(array[i]),
+                    Double.parseDouble(array[i + 1]));
+            corner.add(c);
+        }
+        return new Polygon(corner);
+    }
+
+    public static void main(String[] args) {
+        String str1 = "116.385603,39.937328,116.38616,39.93638,116.387422,39.936712,116.387476,39.93758,116.386371,39.937621";
+        String str2 = "116.385805,39.937649,116.385379,39.937003,116.384894,39.937452,116.385055,39.93776";
+        Polygon p1 = convertToPoly(str1);
+        Polygon p2 = convertToPoly(str2);
+        boolean result = p1.polygonsIntersect(p2);
+        System.out.println("是否相交：" + result);
+        Rectangle r = p1.geometry();
+        System.out.println(r);
     }
 }

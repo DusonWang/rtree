@@ -39,7 +39,7 @@ public final class NonLeafHelper {
         List<Node<T, S>> list = child.add(entry);
         List<? extends Node<T, S>> children2 = Util.replace(children, child, list);
         if (children2.size() <= context.maxChildren())
-            return Collections.singletonList((Node<T, S>) context.factory().createNonLeaf(children2, context));
+            return Collections.singletonList(context.factory().createNonLeaf(children2, context));
         else {
             ListPair<? extends Node<T, S>> pair = context.splitter().split(children2, context.minChildren());
             return makeNonLeaves(pair, context);
@@ -83,12 +83,12 @@ public final class NonLeafHelper {
         }
         if (removeTheseNodes.isEmpty())
             return new NodeAndEntries<>(of(node),
-                    Collections.<Entry<T, S>>emptyList(), 0);
+                    Collections.emptyList(), 0);
         else {
             List<Node<T, S>> nodes = Util.remove(children, removeTheseNodes);
             nodes.addAll(addTheseNodes);
             if (nodes.isEmpty())
-                return new NodeAndEntries<>(Optional.<Node<T, S>>absent(), addTheseEntries, countDeleted);
+                return new NodeAndEntries<>(Optional.absent(), addTheseEntries, countDeleted);
             else {
                 NonLeaf<T, S> nd = node.context().factory().createNonLeaf(nodes, node.context());
                 return new NodeAndEntries<>(of(nd), addTheseEntries, countDeleted);

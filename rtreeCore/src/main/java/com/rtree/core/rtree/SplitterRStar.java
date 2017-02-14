@@ -62,8 +62,7 @@ public final class SplitterRStar implements Splitter {
     }
 
     private static float overlap(ListPair<? extends HasGeometry> pair) {
-        return pair.group1().geometry().mbr()
-                .intersectionArea(pair.group2().geometry().mbr());
+        return pair.group1().geometry().mbr().intersectionArea(pair.group2().geometry().mbr());
     }
 
     @Override

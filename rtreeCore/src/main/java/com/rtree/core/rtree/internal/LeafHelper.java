@@ -21,7 +21,7 @@ public final class LeafHelper {
     public static <T, S extends Geometry> NodeAndEntries<T, S> delete(Entry<? extends T, ? extends S> entry, boolean all, Leaf<T, S> leaf) {
         List<Entry<T, S>> entries = leaf.entries();
         if (!entries.contains(entry)) {
-            return new NodeAndEntries<>(of(leaf), Collections.<Entry<T, S>>emptyList(), 0);
+            return new NodeAndEntries<>(of(leaf), Collections.emptyList(), 0);
         } else {
             final List<Entry<T, S>> entries2 = new ArrayList<>(entries);
             entries2.remove(entry);
@@ -30,9 +30,9 @@ public final class LeafHelper {
                 numDeleted += 1;
             if (entries2.size() >= leaf.context().minChildren()) {
                 Leaf<T, S> node = leaf.context().factory().createLeaf(entries2, leaf.context());
-                return new NodeAndEntries<>(of(node), Collections.<Entry<T, S>>emptyList(), numDeleted);
+                return new NodeAndEntries<>(of(node), Collections.emptyList(), numDeleted);
             } else {
-                return new NodeAndEntries<>(Optional.<Node<T, S>>absent(), entries2, numDeleted);
+                return new NodeAndEntries<>(Optional.absent(), entries2, numDeleted);
             }
         }
     }
@@ -43,7 +43,7 @@ public final class LeafHelper {
         Context<T, S> context = leaf.context();
         @SuppressWarnings("unchecked") final List<Entry<T, S>> entries2 = Util.add(entries, (Entry<T, S>) entry);
         if (entries2.size() <= context.maxChildren())
-            return Collections.singletonList((Node<T, S>) context.factory().createLeaf(entries2, context));
+            return Collections.singletonList(context.factory().createLeaf(entries2, context));
         else {
             ListPair<Entry<T, S>> pair = context.splitter().split(entries2, context.minChildren());
             return makeLeaves(pair, context);

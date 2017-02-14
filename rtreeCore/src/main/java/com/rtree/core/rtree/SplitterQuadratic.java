@@ -36,18 +36,16 @@ public final class SplitterQuadratic implements Splitter {
     private static <T extends HasGeometry> Pair<T> worstCombination(List<T> items) {
         Optional<T> e1 = absent();
         Optional<T> e2 = absent();
-        {
-            Optional<Float> maxArea = absent();
-            for (int i = 0; i < items.size(); i++) {
-                for (int j = i + 1; j < items.size(); j++) {
-                    T entry1 = items.get(i);
-                    T entry2 = items.get(j);
-                    final float area = entry1.geometry().mbr().add(entry2.geometry().mbr()).area();
-                    if (!maxArea.isPresent() || area > maxArea.get()) {
-                        e1 = of(entry1);
-                        e2 = of(entry2);
-                        maxArea = of(area);
-                    }
+        Optional<Float> maxArea = absent();
+        for (int i = 0; i < items.size(); i++) {
+            for (int j = i + 1; j < items.size(); j++) {
+                T entry1 = items.get(i);
+                T entry2 = items.get(j);
+                final float area = entry1.geometry().mbr().add(entry2.geometry().mbr()).area();
+                if (!maxArea.isPresent() || area > maxArea.get()) {
+                    e1 = of(entry1);
+                    e2 = of(entry2);
+                    maxArea = of(area);
                 }
             }
         }
@@ -84,9 +82,7 @@ public final class SplitterQuadratic implements Splitter {
         final Rectangle mbr2 = Util.mbr(group2);
         final T item1 = getBestCandidateForGroup(remaining, mbr1);
         final T item2 = getBestCandidateForGroup(remaining, mbr2);
-        final boolean area1LessThanArea2 = item1.geometry().mbr().add(mbr1)
-                .area() <= item2.geometry().mbr().add(mbr2).area();
-
+        final boolean area1LessThanArea2 = item1.geometry().mbr().add(mbr1).area() <= item2.geometry().mbr().add(mbr2).area();
         if (area1LessThanArea2 && (group2.size() + remaining.size() - 1 >= minGroupSize) || !area1LessThanArea2 && (group1.size() + remaining.size() == minGroupSize)) {
             group1.add(item1);
             remaining.remove(item1);

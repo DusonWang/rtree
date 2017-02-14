@@ -28,7 +28,7 @@ public final class Context<T, S extends Geometry> {
 
     private Context() {
         this(2, 4, new SelectorMinimalAreaIncrease(), new SplitterQuadratic(),
-                Factories.<T, S>defaultFactory());
+                Factories.defaultFactory());
     }
 
     public int maxChildren() {
