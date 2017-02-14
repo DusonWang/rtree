@@ -40,6 +40,11 @@ public final class Point implements Rectangle {
     }
 
     @Override
+    public boolean intersects(Geometry r) {
+        return false;
+    }
+
+    @Override
     public boolean searchPoint(Point point) {
         return this.equals(point);
     }

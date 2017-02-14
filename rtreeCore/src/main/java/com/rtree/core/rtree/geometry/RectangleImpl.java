@@ -108,6 +108,11 @@ public final class RectangleImpl implements Rectangle {
     }
 
     @Override
+    public boolean intersects(Geometry r) {
+        return false;
+    }
+
+    @Override
     public boolean searchPoint(Point point) {
         assert point != null;
         return point.x() >= x1 && point.x() <= x2 && point.y() >= y1 && point.y() <= y2;

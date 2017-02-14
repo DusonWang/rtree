@@ -57,6 +57,11 @@ public final class Circle implements Geometry {
     }
 
     @Override
+    public boolean intersects(Geometry r) {
+        return false;
+    }
+
+    @Override
     public boolean searchPoint(Point point) {
         double lng = x;
         double lat = y;

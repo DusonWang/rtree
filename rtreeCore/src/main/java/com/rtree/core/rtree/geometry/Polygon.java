@@ -80,6 +80,11 @@ public final class Polygon implements HasGeometry, Geometry {
     }
 
     @Override
+    public boolean intersects(Geometry r) {
+        return false;
+    }
+
+    @Override
     public boolean searchPoint(Point point) {
         double x = point.x();
         double y = point.y();

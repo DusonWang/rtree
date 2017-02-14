@@ -314,7 +314,7 @@ public final class RTree<T, S extends Geometry> {
             return this;
         }
 
-        Builder maxChildren(int maxChildren) {
+        public Builder maxChildren(int maxChildren) {
             this.maxChildren = of(maxChildren);
             return this;
         }

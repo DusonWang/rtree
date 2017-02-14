@@ -118,6 +118,11 @@ public class Line implements Geometry {
     }
 
     @Override
+    public boolean intersects(Geometry r) {
+        return false;
+    }
+
+    @Override
     public boolean searchPoint(Point point) {
         return Math.sqrt(Math.pow(point.x() - x1, 2) + Math.pow(point.y() - y1, 2))
                 + Math.sqrt(Math.pow(point.x() - x2, 2 + Math.pow(point.y() - y2, 2))) ==
