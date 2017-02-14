@@ -40,7 +40,7 @@ public final class Point implements Rectangle {
     }
 
     @Override
-    public boolean intersects(Geometry r) {
+    public boolean intersectGeometry(Geometry r) {
         return false;
     }
 

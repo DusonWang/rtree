@@ -80,7 +80,7 @@ public final class Polygon implements HasGeometry, Geometry {
     }
 
     @Override
-    public boolean intersects(Geometry r) {
+    public boolean intersectGeometry(Geometry r) {
         return false;
     }
 

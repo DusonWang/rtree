@@ -9,7 +9,7 @@ public interface Geometry {
 
     boolean intersects(Rectangle r);
 
-    boolean intersects(Geometry r);
+    boolean intersectGeometry(Geometry r);
 
     boolean searchPoint(Point point);
 }

@@ -118,7 +118,7 @@ public class Line implements Geometry {
     }
 
     @Override
-    public boolean intersects(Geometry r) {
+    public boolean intersectGeometry(Geometry r) {
         return false;
     }
 
