@@ -41,7 +41,7 @@ public final class LeafHelper {
             Entry<? extends T, ? extends S> entry, Leaf<T, S> leaf) {
         List<Entry<T, S>> entries = leaf.entries();
         Context<T, S> context = leaf.context();
-        @SuppressWarnings("unchecked") final List<Entry<T, S>> entries2 = Util.add(entries, (Entry<T, S>) entry);
+        final List<Entry<T, S>> entries2 = Util.add(entries, (Entry<T, S>) entry);
         if (entries2.size() <= context.maxChildren())
             return Collections.singletonList(context.factory().createLeaf(entries2, context));
         else {
