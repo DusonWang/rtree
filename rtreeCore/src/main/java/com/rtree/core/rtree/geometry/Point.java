@@ -66,16 +66,8 @@ public final class Point implements Rectangle {
         return result;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Point other = (Point) obj;
-        return Float.floatToIntBits(x) == Float.floatToIntBits(other.x) && Float.floatToIntBits(y) == Float.floatToIntBits(other.y);
+    private boolean equals(Point obj) {
+        return this == obj || obj != null && Float.floatToIntBits(x) == Float.floatToIntBits(obj.x) && Float.floatToIntBits(y) == Float.floatToIntBits(obj.y);
     }
 
     @Override
