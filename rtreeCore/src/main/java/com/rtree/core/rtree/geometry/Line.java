@@ -14,7 +14,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Line2D.Float;
 import java.util.List;
 
-public class Line implements Geometry {
+public final class Line implements Geometry {
 
     private float x1;
     private float y1;

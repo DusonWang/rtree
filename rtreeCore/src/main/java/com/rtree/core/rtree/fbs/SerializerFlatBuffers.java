@@ -119,7 +119,7 @@ public final class SerializerFlatBuffers<T, S extends Geometry> implements
         Context<T, S> context = new Context<>(t.context().minChildren(), t.context().maxChildren(), new SelectorRStar(), new SplitterRStar(), factory);
         NodeExtra node = t.root();
         if (node == null) {
-            return SerializerHelper.create(Optional.<Node<T, S>>absent(), 0, context);
+            return SerializerHelper.create(Optional.absent(), 0, context);
         } else {
             final Node<T, S> root;
             if (structure == InternalStructure.SINGLE_ARRAY) {

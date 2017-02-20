@@ -22,11 +22,11 @@ public final class ImmutableStack<T> implements Iterable<T> {
     }
 
     private ImmutableStack() {
-        this(Optional.<T>absent(), Optional.<ImmutableStack<T>>absent());
+        this(Optional.absent(), Optional.absent());
     }
 
     public static <T> ImmutableStack<T> create(T t) {
-        return new ImmutableStack<>(of(t), of(ImmutableStack.<T>empty()));
+        return new ImmutableStack<>(of(t), of(ImmutableStack.empty()));
     }
 
     @SuppressWarnings("unchecked")

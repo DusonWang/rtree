@@ -50,7 +50,7 @@ public final class BoundedPriorityQueue<T> {
 
     public List<T> asOrderedList() {
         List<T> list = new ArrayList<>(queue);
-        Collections.sort(list, comparator);
+        list.sort(comparator);
         return list;
     }
 

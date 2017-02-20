@@ -12,7 +12,7 @@ import java.util.List;
  * Created by wangds on 17/2/8.
  */
 public final class RectangleImpl implements Rectangle {
-    private final float x1, y1, x2, y2;
+    private float x1, y1, x2, y2;
 
     RectangleImpl(float x1, float y1, float x2, float y2) {
         Preconditions.checkArgument(x2 >= x1);
