@@ -29,8 +29,8 @@ public final class Point implements Rectangle {
     }
 
     double distanceSquared(Point p) {
-        float dx = x - p.x;
-        float dy = y - p.y;
+        final float dx = x - p.x;
+        final float dy = y - p.y;
         return dx * dx + dy * dy;
     }
 
@@ -113,7 +113,7 @@ public final class Point implements Rectangle {
 
     @Override
     public boolean contains(double x, double y) {
-        return this.x == x && this.y == y;
+        return Double.compare(this.x, x) == 0 && Double.compare(this.y, y) == 0;
     }
 
     @Override
