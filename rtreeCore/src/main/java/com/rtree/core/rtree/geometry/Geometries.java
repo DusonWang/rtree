@@ -1,7 +1,5 @@
 package com.rtree.core.rtree.geometry;
 
-import com.github.davidmoten.guavamini.annotations.VisibleForTesting;
-
 public final class Geometries {
 
     private Geometries() {
@@ -56,7 +54,6 @@ public final class Geometries {
         return point(normalizeLongitude(lon), lat);
     }
 
-    @VisibleForTesting
     private static double normalizeLongitude(double d) {
         return normalizeLongitude((float) d);
     }
