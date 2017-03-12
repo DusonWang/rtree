@@ -10,9 +10,10 @@
     <version>1.0</version>
     <modules>
         <module>rtreeCore</module>
+
     </modules>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sourceEncode>UTF-8</sourceEncode>
         <jackson.version>1.9.12</jackson.version>
 
     </properties>
@@ -64,7 +65,7 @@
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <encoding>${sourceEncode}</encoding>
                         <compilerArgs>
                             <arg>-parameters</arg>
                         </compilerArgs>
