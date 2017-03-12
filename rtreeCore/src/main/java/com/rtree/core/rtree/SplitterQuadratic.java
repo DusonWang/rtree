@@ -81,6 +81,7 @@ public final class SplitterQuadratic implements Splitter {
                                                          final int minGroupSize) {
         final Rectangle mbr1 = Util.mbr(group1);
         final Rectangle mbr2 = Util.mbr(group2);
+
         final T item1 = getBestCandidateForGroup(remaining, mbr1);
         final T item2 = getBestCandidateForGroup(remaining, mbr2);
         final boolean area1LessThanArea2 = item1.geometry().mbr().add(mbr1).area() <= item2.geometry().mbr().add(mbr2).area();
