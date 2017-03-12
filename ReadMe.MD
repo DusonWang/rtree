@@ -10,3 +10,5 @@
 ###    3.point in line 
 
 ###    4.point in circle
+
+###    5.line intersect polygon
