@@ -37,8 +37,9 @@ public final class SplitterQuadratic implements Splitter {
         Optional<T> e1 = absent();
         Optional<T> e2 = absent();
         Optional<Float> maxArea = absent();
-        for (int i = 0; i < items.size(); i++) {
-            for (int j = i + 1; j < items.size(); j++) {
+        int size = items.size();
+        for (int i = 0; i < size; i++) {
+            for (int j = i + 1; j < size; j++) {
                 T entry1 = items.get(i);
                 T entry2 = items.get(j);
                 final float area = entry1.geometry().mbr().add(entry2.geometry().mbr()).area();
