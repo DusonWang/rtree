@@ -12,3 +12,6 @@
 ###    4.point in circle
 
 ###    5.line intersect polygon
+
+###    6.circle intersect polygon
+
