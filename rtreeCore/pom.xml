@@ -56,7 +56,7 @@
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <encoding>${sourceEncode}</encoding>
                         <compilerArgs>
                             <arg>-parameters</arg>
                         </compilerArgs>
